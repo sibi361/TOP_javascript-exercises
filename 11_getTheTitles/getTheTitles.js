@@ -1,10 +1,6 @@
-const getTheTitles = function (db) {
-  const titles = [];
-  db.forEach((element) => {
-    titles.push(element.title);
-  });
-  return titles;
+const getTheTitles = (books) => {
+    return books.map((book) => book.title);
 };
 
-// Do not edit below this line
+// // Do not edit below this line
 module.exports = getTheTitles;
