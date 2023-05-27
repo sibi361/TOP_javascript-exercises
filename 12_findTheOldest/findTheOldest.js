@@ -1,27 +1,19 @@
-const findTheOldest = function (peopleDict) {
-  let peopleNew = [];
-  peopleDict.forEach((element) => {
-    let eleNew = {};
-    let age;
+const findTheOldest = function (people) {
+    const peopleAge = people.map((person) => {
+        let personNew = { name: person.name };
 
-    eleNew.name = element.name;
-    if (element.yearOfDeath != undefined)
-      age = element.yearOfDeath - element.yearOfBirth;
-    else age = new Date().getFullYear() - element.yearOfBirth;
-    eleNew.age = age;
+        if (person.yearOfDeath != undefined)
+            personNew.age = person.yearOfDeath - person.yearOfBirth;
+        else personNew.age = new Date().getFullYear() - person.yearOfBirth;
 
-    peopleNew.push(eleNew);
-  });
+        return personNew;
+    });
 
-  let oldest = {};
-  peopleNew.forEach((element) => {
-    if (oldest.age == undefined) oldest = element;
-    else {
-      if (element.age > oldest.age) oldest = element;
-    }
-  });
+    const oldest = peopleAge.reduce((oldest, element) => {
+        return element.age > oldest.age ? element : oldest;
+    }, peopleAge[0]);
 
-  return oldest;
+    return oldest;
 };
 
 // Do not edit below this line
